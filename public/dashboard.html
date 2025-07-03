@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debt Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>💸 Welcome, <span id="user-name"></span>!</h2>
+    <button id="logout-btn">Logout</button>
+
+    <form id="debt-form">
+      <input type="text" id="name" placeholder="Person Name" required />
+      <select id="type">
+        <option value="lent">Lent</option>
+        <option value="borrowed">Borrowed</option>
+      </select>
+      <input type="number" id="amount" placeholder="Amount" required />
+      <input type="text" id="reason" placeholder="Reason (optional)" />
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="summary">
+      <p>Total Lent: ₹<span id="total-lent">0</span></p>
+      <p>Total Borrowed: ₹<span id="total-borrowed">0</span></p>
+    </div>
+    <div class="summary">
+  <p>Total Lent: ₹<span id="total-lent">0</span></p>
+  <p>Total Borrowed: ₹<span id="total-borrowed">0</span></p>
+  <select id="filter-type" onchange="loadDebts()">
+    <option value="all">All</option>
+    <option value="lent">Only Lent</option>
+    <option value="borrowed">Only Borrowed</option>
+  </select>
+</div>
+
+
+    <ul id="debt-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
