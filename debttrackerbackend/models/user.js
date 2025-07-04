@@ -1,3 +1,4 @@
+// debttrackerbackend/models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -7,15 +8,11 @@ const userSchema = new mongoose.Schema({
 });
 
 // Hash password before saving
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
-
-// Method to compare password
-userSchema.methods.comparePassword = function(password) {
-  return bcrypt.compare(password, this.password);
-};
 
 module.exports = mongoose.model('User', userSchema);
